@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
+// import Jokes from './Jokes';
 import axios from 'axios';
 import './ApiButton.css';
 
-const ApiButton = () => {
+const ApiButton = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [joke, setInitialJoke] = useState({ joke: '' });
     const [likedJoke, setLikedJoke] = useState([]);
@@ -30,21 +31,28 @@ const ApiButton = () => {
         setLikedJoke(likedJokes);
     }
 
+    // const showLikedJokes = () => {
+    //     let likedJokes = JSON.parse(localStorage.getItem("jokes") || "[]");
+    //     setLikedJoke(likedJokes);
+    // }
+
     return (
         <div className="card">
             {
-                error && <div className='data'>Error in Finding Jokes{error}</div>
+                error && <div className='btn-joke'>Error in Finding Jokes{error}</div>
             }
             {
-                !isLoading && <button className='data' onClick={fetchData}>Load</button>
+                !isLoading && <button className='btn-joke' onClick={fetchData}>Load</button>
             }
             {
-                isLoading && <button className='data' disabled>
+                isLoading && <button className='btn-joke' disabled>
                     <FaSpinner />
                     Getting joke</button>
             }
             <div className="joke">
-                <button className='iconStyles' onClick={likeJokeAction} >Like</button>
+                <button className='iconStyles' onClick={likeJokeAction} >
+                    Like
+                </button>
                 <div>
                     {joke.joke}
                 </div>
@@ -53,9 +61,11 @@ const ApiButton = () => {
                 <div className='fav-joke'>
                     <div>
                     </div>
+                    {/* <button onClick={() => showLikedJokes(likedJoke)}>Click for Favorites</button> */}
                     {likedJoke.map(j => (
                         <ul className="fav-joke-item">{j}</ul>
                     ))}
+                    {/* <Jokes /> */}
                 </div>
             </div>
         </div>
