@@ -8,10 +8,20 @@ width: 60vw;
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    background-color: #4158D0;
+    background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 59%);
+    
 }
 .home-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(180, 0, 156);
+    border-color: red;
+    border-radius: 10px;
     text-decoration: none;
-    color: black;
+    color: rgb(214, 214, 214);
     width: 20vw;
     height: 30px;
+    margin-top: 15px;
 }

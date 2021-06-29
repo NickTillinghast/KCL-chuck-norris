@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
-// import Jokes from './Jokes';
 import './ApiButton.css';
 
 const ApiButton = () => {
     const [isLoading, setIsLoading] = useState(false)
-    const [joke, setJoke] = useState({ joke: '' });
+    const [joke, setInitialJoke] = useState({ joke: '' });
     const [likedJoke, setLikedJoke] = useState([]);
     const [error, setError] = useState()
 
@@ -17,14 +16,14 @@ const ApiButton = () => {
         try {
             // throw new Error('testing')
             const result = await axios.get(url)
-            setJoke({ ...joke, joke: result.data.value }, setIsLoading(false));
+            setInitialJoke({ ...joke, joke: result.data.value }, setIsLoading(false));
         }
         catch (ex) {
             setError(ex.message)
         }
     }
 
-    const likeJoke = () => {
+    const likeJokeAction = () => {
         let likedJokes = JSON.parse(localStorage.getItem("jokes") || "[]");
         likedJokes.push(joke.joke);
         localStorage.setItem("jokes", JSON.stringify(likedJokes));
@@ -44,13 +43,18 @@ const ApiButton = () => {
                     <FaSpinner />
                     Getting joke</button>
             }
-            <div className="joke"><button className='iconStyles' onClick={likeJoke} >Like</button >{joke.joke} </div>
+            <div className="joke">
+                <button className='iconStyles' onClick={likeJokeAction} >Like</button>
+                <div>
+                    {joke.joke}
+                </div>
+            </div>
             <div>
                 <div className='fav-joke'>
                     <div>
                     </div>
                     {likedJoke.map(j => (
-                        <ul>{j}</ul>
+                        <ul className="fav-joke-item">{j}</ul>
                     ))}
                 </div>
             </div>

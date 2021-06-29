@@ -6,7 +6,7 @@ const Jokes = (props) => {
     return (
         <ul>
             <li>
-                {props.favoriteJokes}
+                {props.value}
             </li>
         </ul>
     )
