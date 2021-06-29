@@ -10,8 +10,6 @@ const ApiButton = () => {
     const [likedJoke, setLikedJoke] = useState([]);
     const [error, setError] = useState()
 
-    let iconStyles = { color: "black", fontSize: ".9em", padding: "10px", marginRight: "20px" }
-    let favoriteJokes = [];
 
     const url = 'https://api.chucknorris.io/jokes/random'
     const fetchData = async () => {
@@ -27,22 +25,13 @@ const ApiButton = () => {
     }
 
     const likeJoke = () => {
-        const newState = [...likedJoke, joke.joke]
-        setLikedJoke(
-            newState
-        );
-        localStorage.setItem("jokes", JSON.stringify(newState))
-        favoriteJokes = localStorage.getItem("jokes", JSON.stringify(newState));
-        console.log(newState)
-        console.log(favoriteJokes)
+        let likedJokes = JSON.parse(localStorage.getItem("jokes") || "[]");
+        likedJokes.push(joke.joke);
+        localStorage.setItem("jokes", JSON.stringify(likedJokes));
+        setLikedJoke(likedJokes);
     }
-    // const favoritesList = (favoriteJokes.map((joke) => (
-    //     <p>Hello, {joke} from the world</p>
-    // )))
-
 
     return (
-
         <div className="card">
             {
                 error && <div className='data'>Error in Finding Jokes{error}</div>
@@ -55,21 +44,16 @@ const ApiButton = () => {
                     <FaSpinner />
                     Getting joke</button>
             }
-            <div className="joke" ><button style={iconStyles} onClick={likeJoke} >Like</button >{joke.joke} </div>
+            <div className="joke"><button className='iconStyles' onClick={likeJoke} >Like</button >{joke.joke} </div>
             <div>
                 <div className='fav-joke'>
                     <div>
-                        {favoriteJokes.map((item, index) => {
-                            return <div key={index}>
-                                <h3>{item}</h3>
-                            </div>
-                        })}
                     </div>
-                    {/* <div>{favoriteJokes}</div> */}
+                    {likedJoke.map(j => (
+                        <ul>{j}</ul>
+                    ))}
                 </div>
             </div>
-
-
         </div>
 
     )

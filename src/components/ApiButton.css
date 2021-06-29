@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    height: 100vh;
     width: 800px;
     border-radius: 12px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
@@ -40,3 +40,9 @@
   .button-inner {
       background-color: purple;
   }
+  .iconStyles { 
+      color: black; 
+      font-size: .9em;
+      padding: 10px; 
+      margin-Right: 20px;
+    }
