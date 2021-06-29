@@ -1,4 +1,4 @@
-.card {
+.quote-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,14 +22,14 @@
  }
 
  .joke {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     border: solid;
-     border-color: aqua;
-     color: rgb(164, 206, 201);
-     padding: 20px;
-     border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid;
+      border-color: aqua;
+      color: rgb(164, 206, 201);
+      padding: 20px;
+      border-radius: 5px;
  }
   .like-btn {
       width: 40px;
@@ -39,11 +39,11 @@
   }
 
   .fav-joke {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: white;
-  }
-
-  .button-inner {
-      background-color: purple;
   }
 
   .iconStyles { 

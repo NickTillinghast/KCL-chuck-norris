@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
-// import Jokes from './Jokes';
+import Jokes from './Jokes';
 import axios from 'axios';
-import './ApiButton.css';
+import './QuoteGenerator.css';
 
-const ApiButton = (props) => {
+const QuoteGenerator = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [joke, setInitialJoke] = useState({ joke: '' });
     const [likedJoke, setLikedJoke] = useState([]);
@@ -31,13 +31,9 @@ const ApiButton = (props) => {
         setLikedJoke(likedJokes);
     }
 
-    // const showLikedJokes = () => {
-    //     let likedJokes = JSON.parse(localStorage.getItem("jokes") || "[]");
-    //     setLikedJoke(likedJokes);
-    // }
 
     return (
-        <div className="card">
+        <div className="quote-container">
             {
                 error && <div className='btn-joke'>Error in Finding Jokes{error}</div>
             }
@@ -50,28 +46,19 @@ const ApiButton = (props) => {
                     Getting joke</button>
             }
             <div className="joke">
-                <button className='iconStyles' onClick={likeJokeAction} >
+                <button className='iconStyles'
+                    onClick={likeJokeAction} >
                     Like
                 </button>
                 <div>
                     {joke.joke}
                 </div>
             </div>
-            <div>
-                <div className='fav-joke'>
-                    <div>
-                    </div>
-                    {/* <button onClick={() => showLikedJokes(likedJoke)}>Click for Favorites</button> */}
-                    {likedJoke.map(j => (
-                        <ul className="fav-joke-item">{j}</ul>
-                    ))}
-                    {/* <Jokes /> */}
-                </div>
-            </div>
+            <Jokes />
         </div>
 
     )
 }
 
-export default ApiButton;
+export default QuoteGenerator;
 

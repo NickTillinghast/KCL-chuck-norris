@@ -1,17 +1,28 @@
-// import React from 'react';
-// import './Jokes.css';
+import React, { useState } from 'react';
+import './Jokes.css';
 
-// const Jokes = (props) => {
+const Jokes = () => {
 
-//     return (
-//         <ul>
-//             <li>
-//                 {/* {props.showLikedJokes.map(j => (
-//                     <ul className="fav-joke-item">{j}</ul>
-//                 ))} */}
-//             </li>
-//         </ul>
-//     )
-// }
+    const [likedJoke, setLikedJoke] = useState([]);
 
-// export default Jokes;
+    const getLikedJokes = () => {
+        let likedJokes = JSON.parse(localStorage.getItem("jokes") || "[]");
+        setLikedJoke(likedJokes);
+    }
+
+    return (
+        <div className="joke-container">
+            <button className="btn-jokes" onClick={getLikedJokes}>Get All Liked Jokes</button>
+            <ul>
+                <li>
+
+                    {likedJoke.map(j => (
+                        <ul className="fav-joke-item">{j}</ul>
+                    ))}
+                </li>
+            </ul>
+        </div>
+    )
+}
+
+export default Jokes;

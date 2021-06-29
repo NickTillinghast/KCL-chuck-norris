@@ -1,0 +1,21 @@
+.fav-joke-item {
+    padding: 20px;
+    color: white;
+}
+.btn-jokes {
+    width: 30vw;
+    padding: 10px;
+    margin: 10px 0px 15px 0px;
+    background-color: white;
+    border-color:cyan;
+    border-radius: 3px;
+}
+li {
+    list-style-type: none;
+}
+.joke-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
